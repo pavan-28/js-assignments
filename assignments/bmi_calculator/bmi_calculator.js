@@ -4,9 +4,9 @@ function BMICalculator(mass, height) {
     if (mass<=0 && height<=0){
         return("INVALID INPUT")
     }
-    else{
+     else{
         let BMI=mass/(height*height)
-        return BMI
+            return BMI
     }
 }
 

@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
     <head>
         <title>Todo List</title>
     </head>
@@ -10,4 +10,81 @@
         </div>
     </body>
     <script src='./script.js'></script>
-</html>
+</html> -->
+const compBtn = document.querySelector('button#comp');
+const pendBtn = document.querySelector('button#pend');
+const allbtn = document.querySelector('button#all');
+async function fetchtodo(){
+    let res=await fetch('https://jsonplaceholder.typicode.com/todos');
+    console.log(res)
+    let data=await res.json();
+    console.log(data)
+    allbtn.onclick = function(){
+        let output='';
+    data.forEach(function(todo,index) {
+        output+=`<p key=${todo.id}>
+                "userId":  ${todo.userId},<br>
+                "id": ${todo.id},<br>
+                "title": ${todo.title},<br>
+                "completed":  ${todo.completed},<br>
+                </p>`
+})
+    document.querySelector('.todos').innerHTML=output;
+    }
+    compBtn.onclick = function(){
+        let output='';
+    data.forEach(function(todo,index) {
+        if (todo.completed == true){
+        output+=`<p key=${todo.id}>
+                "userId":  ${todo.userId},<br>
+                "id": ${todo.id},<br>
+                "title": ${todo.title},<br>
+                "completed":  ${todo.completed},<br>
+                </p>`
+}})
+    document.querySelector('.todos').innerHTML=output;
+    }
+    pendBtn.onclick = function(){
+        let output='';
+        data.forEach(function(todo,index) {
+            if (todo.completed == false){
+            output+=`<p key=${todo.id}>
+                  "userId":  ${todo.userId},<br>
+                   "id": ${todo.id},<br>
+                   "title": ${todo.title},<br>
+                  "completed":  ${todo.completed},<br>
+                    </p>`
+    }})
+        document.querySelector('.todos').innerHTML=output;
+        }
+}
+    fetchtodo();
+[1:50 PM] <html>
+    <head>
+        <title>Todo List</title>
+    </head>
+    <body>
+        <div>
+            <!-- <input type='text' name='todo_input'>
+            <button type='submit'>Add Todo</button>
+            <br> -->
+        <table>
+                <tr>
+                    <th><button id="all"  type='submit'>ALL</button></th>
+                    <th> <button id="comp"  type='submit'>COMPLETED</button></th>
+                    <th><button id="pend"  type='submit'>PENDING</button></th>
+                </tr>
+        </table>
+            <div class='todos' ></div>
+        </div>
+    </body>
+    <script src='./script.js'></script>
+
+
+
+
+
+
+
+
+
